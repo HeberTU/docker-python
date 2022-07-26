@@ -41,12 +41,21 @@ services:
     #
     # Here, we are linking the database container to the web container, so that
     # our web container can reach the database in the bridge network.
+    depends_on:
+      - database
+    # This is used to inform docker-compose about all the dependencies of a
+    # service. Docker-compose will then start dependencies first and the main
+    # service after.
+
   database:
     # The name web is the name of our database service.
-    image: mysql/mysql-server:5.7
-    # If we don’t have a Dockerfile and want to run a service directly using an
-    #  already built docker image, then specify the image location using the
-    # ‘image’ clause. Compose will pull the image and fork a container from it.
+    build:
+      context: ./db
+      # Use this to specify the directory of Dockerfile or alternate Dockerfile
+      # relative to docker-compose.yml file
+      dockerfile: Dockerfile-db
+      # specify the name of alternate Dockerfile if it is not named as
+      # Dockerfile.
     environment:
       - "MYSQL_ROOT_PASSWORD=root"
       - "MYSQL_USER=testuser"
