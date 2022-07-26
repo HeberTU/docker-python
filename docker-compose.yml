@@ -57,10 +57,10 @@ services:
       # specify the name of alternate Dockerfile if it is not named as
       # Dockerfile.
     environment:
-      - "MYSQL_ROOT_PASSWORD=root"
-      - "MYSQL_USER=testuser"
-      - "MYSQL_PASSWORD=admin123"
-      - "MYSQL_DATABASE=backend"
+      - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
+      - "MYSQL_USER=${MYSQL_USER}"
+      - "MYSQL_PASSWORD=${MYSQL_PASSWORD}"
+      - "MYSQL_DATABASE=${MYSQL_DATABASE}"
     # Any environment variable that should be present in the container can be
     # created using the environment clause. This does the same work as the -e
     # argument in the docker run command while running a container.
